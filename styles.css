@@ -186,6 +186,7 @@ button:disabled {
   z-index: -3;
   background-position: center;
   background-size: cover;
+  filter: brightness(1.12) saturate(1.04);
   transform: scale(1.05);
   animation: slow-drift 18s ease-in-out infinite alternate;
 }
@@ -195,8 +196,8 @@ button:disabled {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(circle at 50% 18%, rgba(255, 244, 225, 0.06), transparent 25%),
-    linear-gradient(180deg, rgba(6, 12, 18, 0.74), rgba(6, 12, 18, 0.28) 34%, rgba(6, 12, 18, 0.84) 100%);
+    radial-gradient(circle at 50% 18%, rgba(255, 244, 225, 0.08), transparent 25%),
+    linear-gradient(180deg, rgba(6, 12, 18, 0.56), rgba(6, 12, 18, 0.18) 34%, rgba(6, 12, 18, 0.72) 100%);
 }
 
 .scene-vignette::after {
@@ -207,7 +208,7 @@ button:disabled {
     radial-gradient(circle at 20% 25%, rgba(210, 225, 235, 0.16), transparent 28%),
     radial-gradient(circle at 80% 40%, rgba(210, 225, 235, 0.12), transparent 32%);
   filter: blur(28px);
-  opacity: 0.58;
+  opacity: 0.42;
   animation: fog-drift 12s ease-in-out infinite alternate;
 }
 
@@ -248,8 +249,8 @@ button:disabled {
   border: 1px solid rgba(255, 248, 238, 0.16);
   border-radius: 8px;
   padding: 20px 16px 16px;
-  background: rgba(14, 20, 25, 0.56);
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.26);
+  background: rgba(14, 20, 25, 0.42);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   animation: card-in 460ms 80ms ease both;
 }
@@ -278,7 +279,7 @@ button:disabled {
   border: 1px solid rgba(255, 248, 238, 0.22);
   padding: 15px 15px;
   color: #fff8ee;
-  background: rgba(255, 248, 238, 0.11);
+  background: rgba(255, 248, 238, 0.09);
   text-align: left;
   line-height: 1.55;
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
@@ -307,7 +308,7 @@ button:disabled {
 .option-button.selected,
 .option-button:hover {
   border-color: rgba(255, 218, 150, 0.62);
-  background: rgba(255, 248, 238, 0.2);
+  background: rgba(255, 248, 238, 0.17);
 }
 
 .result-screen {
