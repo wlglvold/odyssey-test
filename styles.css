@@ -1,0 +1,316 @@
+:root {
+  color-scheme: light;
+  --paper: #f7f1e7;
+  --ink: #26211c;
+  --muted: #7b6a55;
+  --gold: #8b6f47;
+  --terracotta: #a84e32;
+  --sea: #17212a;
+  --line: rgba(38, 33, 28, 0.14);
+  --shadow: rgba(23, 33, 42, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--paper);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(23, 33, 42, 0.04), transparent 42vh),
+    var(--paper);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(100%, 520px);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 0 18px max(28px, env(safe-area-inset-bottom));
+}
+
+.hero {
+  margin: 0 -18px;
+  background: var(--sea);
+  color: #fff7eb;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero-copy {
+  padding: 24px 22px 28px;
+}
+
+.brand,
+.kicker,
+.quiz-header p {
+  margin: 0;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero .brand {
+  color: #c8ad76;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+.hero h1 {
+  margin: 10px 0 14px;
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: clamp(34px, 11vw, 52px);
+  line-height: 1.06;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-bottom: 12px;
+  color: #f3dcc0;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.intro {
+  margin-bottom: 0;
+  color: rgba(255, 247, 235, 0.82);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.panel {
+  padding: 26px 0 0;
+}
+
+.access-form {
+  display: grid;
+  gap: 12px;
+}
+
+.access-form label {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.access-form input {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 16px;
+  color: var(--ink);
+  background: rgba(255, 252, 246, 0.8);
+  box-shadow: 0 10px 28px rgba(23, 33, 42, 0.06);
+  outline: none;
+}
+
+.access-form input:focus {
+  border-color: rgba(168, 78, 50, 0.6);
+  box-shadow: 0 0 0 4px rgba(168, 78, 50, 0.11);
+}
+
+button {
+  min-height: 52px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff8ee;
+  background: var(--sea);
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.form-message {
+  margin: 0;
+  color: var(--terracotta);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.fine-print {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.quiz-screen {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding-top: max(18px, env(safe-area-inset-top));
+}
+
+.quiz-header {
+  padding: 8px 0 24px;
+}
+
+.progress-track {
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: rgba(38, 33, 28, 0.12);
+  overflow: hidden;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--terracotta);
+  transition: width 160ms ease;
+}
+
+.question-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 26px;
+}
+
+.question-block h2 {
+  margin: 0 0 30px;
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: clamp(23px, 6.8vw, 34px);
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option-button {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: start;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  border: 1px solid var(--line);
+  padding: 17px 16px;
+  color: var(--ink);
+  background: rgba(255, 252, 246, 0.82);
+  text-align: left;
+  line-height: 1.55;
+  box-shadow: 0 12px 26px rgba(23, 33, 42, 0.06);
+}
+
+.option-button span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #fff8ee;
+  background: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.option-button:active {
+  transform: translateY(1px);
+}
+
+.result-screen {
+  min-height: 100svh;
+  padding: max(38px, env(safe-area-inset-top)) 0 34px;
+}
+
+.result-screen h1 {
+  margin: 8px 0 16px;
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: clamp(46px, 15vw, 68px);
+  line-height: 1;
+}
+
+.result-line {
+  margin-bottom: 28px;
+  color: var(--terracotta);
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.result-body {
+  display: grid;
+  gap: 16px;
+  color: rgba(38, 33, 28, 0.92);
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.result-body p {
+  margin: 0;
+}
+
+blockquote {
+  margin: 30px 0;
+  border-left: 4px solid var(--terracotta);
+  padding: 3px 0 3px 18px;
+  color: var(--sea);
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.result-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.result-actions button:last-child {
+  color: var(--sea);
+  background: rgba(23, 33, 42, 0.1);
+}
+
+@media (min-width: 720px) {
+  .app-shell {
+    padding-inline: 0;
+  }
+
+  .hero {
+    margin-inline: 0;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px var(--shadow);
+  }
+
+  .hero-image {
+    aspect-ratio: 16 / 10;
+  }
+}
