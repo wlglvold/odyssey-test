@@ -31,7 +31,7 @@ base = Image.alpha_composite(base.convert("RGBA"), overlay)
 panel = Image.new("RGBA", (width, height), (0, 0, 0, 0))
 panel_draw = ImageDraw.Draw(panel)
 panel_draw.rounded_rectangle(
-    (80, 905, 1000, 1302),
+    (80, 932, 1000, 1238),
     radius=26,
     fill=(10, 16, 22, 132),
     outline=(232, 204, 145, 72),
@@ -47,7 +47,6 @@ font_title = ImageFont.truetype(serif, 84)
 font_sub = ImageFont.truetype(serif, 44)
 font_body = ImageFont.truetype(sans, 35)
 font_small = ImageFont.truetype(sans, 28)
-font_price = ImageFont.truetype(sans, 42)
 
 
 def center_text(text, y, font, fill):
@@ -64,17 +63,14 @@ center_text("8题 · 角色人格测评", 418, font_sub, (242, 220, 188, 245))
 lines = [
     "一场关于归途、等待、欲望",
     "和命运的航行测试",
-    "测完生成你的神话人格结果",
+    "看见那个尚未命名的自己",
 ]
-y = 955
+y = 996
 for line in lines:
     draw.text((128, y), line, font=font_body, fill=(255, 248, 235, 238))
-    y += 58
+    y += 64
 
-draw.rounded_rectangle((128, 1168, 408, 1240), radius=36, fill=(168, 78, 50, 236))
-draw.text((176, 1180), "¥1 / 次", font=font_price, fill=(255, 248, 235, 255))
-draw.text((440, 1182), "购买后发访问密钥", font=font_body, fill=(238, 210, 162, 255))
-draw.text((128, 1260), "娱乐向人格探索｜结果适合截图保存", font=font_small, fill=(220, 202, 170, 230))
+draw.text((128, 1188), "发现未被看见的自己", font=font_small, fill=(220, 202, 170, 230))
 
 out.parent.mkdir(parents=True, exist_ok=True)
 base.convert("RGB").save(out, quality=92, optimize=True)
