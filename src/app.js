@@ -48,6 +48,89 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function renderRadarChart(traits) {
+  const entries = Object.entries(traits);
+  const center = 120;
+  const radius = 72;
+  const maxValue = 5;
+  const angleStep = (Math.PI * 2) / entries.length;
+  const startAngle = -Math.PI / 2;
+
+  const pointAt = (index, value = maxValue) => {
+    const angle = startAngle + index * angleStep;
+    const distance = radius * (value / maxValue);
+    return {
+      x: center + Math.cos(angle) * distance,
+      y: center + Math.sin(angle) * distance,
+    };
+  };
+
+  const polygon = entries
+    .map(([, value], index) => {
+      const point = pointAt(index, value);
+      return `${point.x.toFixed(1)},${point.y.toFixed(1)}`;
+    })
+    .join(" ");
+
+  const rings = [1, 2, 3, 4, 5]
+    .map((level) => {
+      const points = entries
+        .map((_, index) => {
+          const point = pointAt(index, level);
+          return `${point.x.toFixed(1)},${point.y.toFixed(1)}`;
+        })
+        .join(" ");
+      return `<polygon class="radar-ring" points="${points}" />`;
+    })
+    .join("");
+
+  const axes = entries
+    .map((_, index) => {
+      const point = pointAt(index);
+      return `<line class="radar-axis" x1="${center}" y1="${center}" x2="${point.x.toFixed(
+        1,
+      )}" y2="${point.y.toFixed(1)}" />`;
+    })
+    .join("");
+
+  const labels = entries
+    .map(([label, value], index) => {
+      const point = pointAt(index, 6.05);
+      return `
+        <div class="trait-label" style="left:${point.x}px; top:${point.y}px">
+          <span>${escapeHtml(label)}</span>
+          <strong>${value}</strong>
+        </div>
+      `;
+    })
+    .join("");
+
+  return `
+    <section class="radar-card" aria-label="人格倾向图">
+      <div class="radar-title">
+        <span>人格倾向</span>
+        <small>1-5 仅表示叙事侧重</small>
+      </div>
+      <div class="radar-wrap">
+        <svg viewBox="0 0 240 240" role="img" aria-label="六项人格倾向蜘蛛网图">
+          ${rings}
+          ${axes}
+          <polygon class="radar-area" points="${polygon}" />
+          ${entries
+            .map(([, value], index) => {
+              const point = pointAt(index, value);
+              return `<circle class="radar-dot" cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(
+                1,
+              )}" r="4" />`;
+            })
+            .join("")}
+        </svg>
+        ${labels}
+      </div>
+    </section>
+  `;
+}
+
 function renderHome(message = "") {
   app.innerHTML = `
     <section class="hero">
@@ -109,7 +192,9 @@ function renderQuestion() {
   const progressPercent = Math.round((progress / quiz.questions.length) * 100);
 
   app.innerHTML = `
-    <section class="quiz-screen">
+    <section class="quiz-screen scene-enter">
+      <div class="scene-background" style="background-image: url('${question.background}')"></div>
+      <div class="scene-vignette"></div>
       <header class="quiz-header">
         <p>第 ${progress} / ${quiz.questions.length} 题</p>
         <div class="progress-track" aria-hidden="true">
@@ -118,6 +203,7 @@ function renderQuestion() {
       </header>
 
       <article class="question-block">
+        <div class="question-card">
         <h2>${escapeHtml(question.text)}</h2>
         <div class="options">
           ${question.options
@@ -131,6 +217,7 @@ function renderQuestion() {
             )
             .join("")}
         </div>
+        </div>
       </article>
     </section>
   `;
@@ -140,7 +227,11 @@ function renderQuestion() {
       const optionIndex = Number(button.dataset.option);
       const selected = question.options[optionIndex];
 
+      document.querySelectorAll(".option-button").forEach((optionButton) => {
+        optionButton.disabled = true;
+      });
       state.answers[state.currentQuestion] = selected.resultId;
+      button.classList.add("selected");
 
       const nextQuestion = getNextQuestion(state.currentQuestion);
       if (nextQuestion === null) {
@@ -152,7 +243,7 @@ function renderQuestion() {
 
       state.currentQuestion = nextQuestion;
       saveState();
-      renderQuestion();
+      window.setTimeout(renderQuestion, 180);
     });
   });
 }
@@ -170,6 +261,8 @@ function renderResult() {
       <p class="kicker">你的结果是</p>
       <h1>${escapeHtml(result.name)}</h1>
       <p class="result-line">${escapeHtml(result.line)}</p>
+
+      ${renderRadarChart(result.traits)}
 
       <div class="result-body">
         ${result.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}

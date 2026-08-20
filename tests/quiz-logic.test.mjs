@@ -8,6 +8,7 @@ import {
   getNextQuestion,
   calculateResultId,
 } from "../src/quiz-logic.js";
+import { quiz, results } from "../src/quiz-data.js";
 
 test("validates access codes by SHA-256 hash, not plain text", async () => {
   const hash = await hashAccessCode("K7FM-2P9X-WQ4D");
@@ -52,4 +53,24 @@ test("uses the final weighted question to break close results", () => {
   ];
 
   assert.equal(calculateResultId(answers), "calypso");
+});
+
+test("every question has a background image for the mobile scene", () => {
+  assert.equal(quiz.questions.length, 8);
+
+  for (const question of quiz.questions) {
+    assert.match(question.background, /^\.\/assets\/questions\/q\d\.jpg$/);
+  }
+});
+
+test("every result has six radar metrics", () => {
+  const expectedMetrics = ["行动力", "策略感", "共情力", "边界感", "归属感", "掌控欲"];
+
+  for (const result of Object.values(results)) {
+    assert.deepEqual(Object.keys(result.traits), expectedMetrics);
+    for (const value of Object.values(result.traits)) {
+      assert.equal(Number.isInteger(value), true);
+      assert.equal(value >= 1 && value <= 5, true);
+    }
+  }
 });
