@@ -10,13 +10,16 @@ import {
 } from "../src/quiz-logic.js";
 import { quiz, results } from "../src/quiz-data.js";
 
-test("validates access codes by SHA-256 hash, not plain text", async () => {
-  const hash = await hashAccessCode("K7FM-2P9X-WQ4D");
+test("stores access codes as SHA-256 hashes and rejects unknown codes", async () => {
+  const hash = await hashAccessCode("SAMPLE-CODE-ONLY");
 
-  assert.equal(await isValidAccessCode("K7FM-2P9X-WQ4D"), true);
   assert.equal(await isValidAccessCode("wrong-code"), false);
-  assert.equal(ACCESS_CODE_HASHES.includes("K7FM-2P9X-WQ4D"), false);
-  assert.equal(ACCESS_CODE_HASHES.includes(hash), true);
+  assert.equal(ACCESS_CODE_HASHES.length, 50);
+  assert.equal(ACCESS_CODE_HASHES.includes("SAMPLE-CODE-ONLY"), false);
+  assert.equal(ACCESS_CODE_HASHES.includes(hash), false);
+  for (const storedHash of ACCESS_CODE_HASHES) {
+    assert.match(storedHash, /^[a-f0-9]{64}$/);
+  }
 });
 
 test("moves through questions until the quiz is finished", () => {

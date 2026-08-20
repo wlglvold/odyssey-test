@@ -145,7 +145,7 @@ function renderHome(message = "") {
 
     <section class="panel">
       <form id="access-form" class="access-form">
-        <label for="access-code">输入你的测试兑换码</label>
+        <label for="access-code">输入你的测试验证码</label>
         <input
           id="access-code"
           name="access-code"
@@ -177,7 +177,7 @@ function renderHome(message = "") {
       return;
     }
 
-    renderHome("兑换码无效。请检查大小写、横杠和空格后重试。");
+    renderHome("验证码无效。请检查大小写、横杠和空格后重试。");
   });
 }
 
