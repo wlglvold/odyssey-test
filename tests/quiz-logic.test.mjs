@@ -14,7 +14,7 @@ test("stores access codes as SHA-256 hashes and rejects unknown codes", async ()
   const hash = await hashAccessCode("SAMPLE-CODE-ONLY");
 
   assert.equal(await isValidAccessCode("wrong-code"), false);
-  assert.equal(ACCESS_CODE_HASHES.length, 50);
+  assert.equal(ACCESS_CODE_HASHES.length, 1);
   assert.equal(ACCESS_CODE_HASHES.includes("SAMPLE-CODE-ONLY"), false);
   assert.equal(ACCESS_CODE_HASHES.includes(hash), false);
   for (const storedHash of ACCESS_CODE_HASHES) {

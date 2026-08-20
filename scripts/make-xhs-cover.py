@@ -73,7 +73,7 @@ for line in lines:
 
 draw.rounded_rectangle((128, 1168, 408, 1240), radius=36, fill=(168, 78, 50, 236))
 draw.text((176, 1180), "¥1 / 次", font=font_price, fill=(255, 248, 235, 255))
-draw.text((440, 1182), "购买后发测试验证码", font=font_body, fill=(238, 210, 162, 255))
+draw.text((440, 1182), "购买后发访问密钥", font=font_body, fill=(238, 210, 162, 255))
 draw.text((128, 1260), "娱乐向人格探索｜结果适合截图保存", font=font_small, fill=(220, 202, 170, 230))
 
 out.parent.mkdir(parents=True, exist_ok=True)
