@@ -336,6 +336,28 @@ button:disabled {
   line-height: 1.55;
 }
 
+.result-portrait {
+  margin: 0 0 28px;
+}
+
+.result-portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--sea);
+  box-shadow: 0 18px 56px rgba(23, 33, 42, 0.18);
+}
+
+.result-portrait figcaption {
+  margin: 12px 2px 0;
+  color: var(--muted);
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
 .radar-card {
   margin: 0 0 28px;
   border: 1px solid var(--line);

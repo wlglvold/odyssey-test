@@ -48,6 +48,7 @@ Design the test as a finished cultural product, not a generic questionnaire.
 - Make questions situational and cinematic, but keep the decision clear. If users need to reread twice to understand the choice, simplify.
 - Weight the final or most identity-revealing question slightly if the scoring model needs a strong closing signal.
 - Result pages are the product. Include a title, subtitle, core reading, strengths, blind spot, relationship/work pattern, and a small radar chart of common traits.
+- Each final report should include a role-specific image. The image should match that result's archetype, emotional temperature, color palette, and symbolic setting instead of reusing generic quiz art.
 
 For 「未见测试」, avoid language that makes the product feel like cheap entertainment when the brand wants a more serious meaning-service tone. Prefer phrases such as “命运叙事”, “意识结构”, “性格镜像”, “角色原型”, and “内在秩序”. Keep direct sales text off the aesthetic cover unless the user asks for transactional advertising.
 
@@ -57,7 +58,7 @@ Design mobile first. The user should be able to finish the test with one thumb a
 
 - Home: one strong cover image, test title, short premise, access-key input, start button.
 - Question page: one question at a time, visible progress, large tappable options, background image per question.
-- Result page: calm reading layout, role image or symbolic background, radar chart, enough whitespace for long copy.
+- Result page: calm reading layout, role-specific report image, radar chart, enough whitespace for long copy.
 - Use subtle CSS transitions between pages; avoid heavy animation that makes reading harder.
 - For background images, keep the image visible while preserving text contrast. A practical layering pattern is image at `z-index: 0`, soft dark overlay at `z-index: 1`, content at `z-index: 2`.
 - Generate or source images that match the actual theme. Avoid generic AI-purple gradients, SaaS dashboards, glassmorphism, and decorative blobs.
@@ -100,6 +101,7 @@ Before calling the work finished:
 - All questions can be answered through to a result.
 - Refreshing or reopening gives an acceptable MVP experience for the chosen static/back-end model.
 - Result text, radar chart, and images render without overlap.
+- Every final result has its own image path and a short visual tone note explaining why the image fits the role.
 - Tests pass, or any missing verification is clearly reported.
 - GitHub Pages has deployed and the public URL returns the expected site.
 - The user knows the current key and how to rotate it.

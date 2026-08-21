@@ -85,3 +85,20 @@ test("every result has six radar metrics", () => {
     }
   }
 });
+
+test("every result has a role-specific report image and visual tone", () => {
+  for (const [resultId, result] of Object.entries(results)) {
+    assert.match(result.image, new RegExp(`^\\./assets/results/${resultId}\\.jpg$`));
+    assert.equal(fs.existsSync(new URL(`../assets/results/${resultId}.jpg`, import.meta.url)), true);
+    assert.equal(typeof result.visualTone, "string");
+    assert.equal(result.visualTone.length > 8, true);
+  }
+});
+
+test("result page renders the role-specific report image", () => {
+  const appSource = fs.readFileSync(new URL("../src/app.js", import.meta.url), "utf8");
+
+  assert.equal(appSource.includes("result-portrait"), true);
+  assert.equal(appSource.includes("result.image"), true);
+  assert.equal(appSource.includes("result.visualTone"), true);
+});

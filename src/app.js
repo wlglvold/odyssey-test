@@ -261,6 +261,11 @@ function renderResult() {
       <h1>${escapeHtml(result.name)}</h1>
       <p class="result-line">${escapeHtml(result.line)}</p>
 
+      <figure class="result-portrait">
+        <img src="${escapeHtml(result.image)}" alt="${escapeHtml(`${result.name}的角色结果配图`)}" />
+        <figcaption>${escapeHtml(result.visualTone)}</figcaption>
+      </figure>
+
       ${renderRadarChart(result.traits)}
 
       <div class="result-body">
