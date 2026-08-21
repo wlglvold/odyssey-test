@@ -151,7 +151,6 @@ function renderHome(message = "") {
           name="access-code"
           autocomplete="one-time-code"
           inputmode="latin"
-          placeholder="例如 K7FM-2P9X-WQ4D"
           required
         />
         ${message ? `<p class="form-message">${escapeHtml(message)}</p>` : ""}

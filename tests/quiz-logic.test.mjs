@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
 
 import {
   ACCESS_CODE_HASHES,
@@ -20,6 +21,13 @@ test("stores access codes as SHA-256 hashes and rejects unknown codes", async ()
   for (const storedHash of ACCESS_CODE_HASHES) {
     assert.match(storedHash, /^[a-f0-9]{64}$/);
   }
+});
+
+test("does not show an example access code in the input placeholder", () => {
+  const appSource = fs.readFileSync(new URL("../src/app.js", import.meta.url), "utf8");
+
+  assert.equal(appSource.includes("例如"), false);
+  assert.equal(appSource.includes("K7FM-2P9X-WQ4D"), false);
 });
 
 test("moves through questions until the quiz is finished", () => {
